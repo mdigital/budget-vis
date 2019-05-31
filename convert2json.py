@@ -19,13 +19,20 @@ with open('b19-expenditure-data.csv', newline='', encoding='Windows-1252') as cs
         vote = row[1]
         appro = row[4]
         category = row[5]
+        function = row[9]
         amount = row[10]
 
+        functionRecord = False
+        functionRecord = in_dictlist('name',function,data['children'])
+        if not (functionRecord):
+          functionRecord={'name': function, 'children':[]}
+          data['children'].append(functionRecord)
+
         departmentRecord = False
-        departmentRecord = in_dictlist('name',department,data['children'])
+        departmentRecord = in_dictlist('name',department,functionRecord['children'])
         if not (departmentRecord):
           departmentRecord={'name': department, 'children':[]}
-          data['children'].append(departmentRecord)
+          functionRecord['children'].append(departmentRecord)
 
         voteRecord = False
         voteRecord = in_dictlist('name',vote,departmentRecord['children'])
