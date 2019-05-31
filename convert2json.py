@@ -1,5 +1,5 @@
 import csv
-
+import json
 
 def in_dictlist(key, value, my_dictlist):
     for this in my_dictlist:
@@ -47,4 +47,4 @@ with open('b19-expenditure-data.csv', newline='', encoding='Windows-1252') as cs
         else:
           categoryRecord['value']=categoryRecord['value']+int(amount)
 
-    print(data)
+    print(json.dumps(data))
